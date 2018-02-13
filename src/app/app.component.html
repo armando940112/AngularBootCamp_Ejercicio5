@@ -16,7 +16,7 @@
 <div *ngFor="let post of posts" class="list">
     <label for="">
       <div class="list-element">
-        <span>{{post.id}}</span>
+        <span> {{post.id}} </span>
         <span>{{post.title}}</span>
         <button (click)="removePost(post)">Remove</button>
         <button (click)="editPost(post)">Edit</button>
