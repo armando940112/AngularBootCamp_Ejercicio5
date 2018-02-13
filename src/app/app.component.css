@@ -1,0 +1,39 @@
+div.list{
+    border: 1pc solid white;
+    height: 30px;
+    width: 80%;
+}
+
+div.list-element{
+    vertical-align: middle;
+}
+
+div.list-element button{
+    float: right;
+}
+
+div.new-post{
+    width: 70%;
+    border: 1pc solid white;
+    height: 50px;
+}
+
+div input{
+    width: 85%;
+    height: 44px;
+    font-size: 20px;
+}
+
+div {
+    font-size: 20px;
+}
+
+div.list:hover {
+    background-color:lightgrey;
+}
+
+
+
+
+
+
