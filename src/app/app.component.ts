@@ -13,10 +13,10 @@ import { map } from 'rxjs/Operators/map';
 export class AppComponent implements OnInit {
   title = 'app';
   author = 'Armando Londoño';
-  selectedPost = '';
   isEditing: boolean;
   postToEdit: Post;
   posts: Post[];
+  selectedPost: Post = new Post(0, '', '');
 
   constructor(private postService: PostService) {
   }
@@ -30,17 +30,19 @@ export class AppComponent implements OnInit {
   }
 
   savePost() {
-    if (this.selectedPost.trim() !== '') {
+    if (this.selectedPost.title.trim() !== '' || this.selectedPost.body.trim() !== '') {
       if (this.isEditing) {
-        this.postToEdit.title = this.selectedPost;
+        this.postToEdit.title = this.selectedPost.title;
+        this.postToEdit.body = this.selectedPost.body;
         this.isEditing = false;
       } else {
-        const newPostId: number =  this.posts.reduce((max, post) => post.id > max ? post.id : max, this.posts[0].id);
-        this.posts = [new Post(newPostId + 1, this.selectedPost), ...this.posts];
+        const newPostId: number = this.posts.reduce((max, post) => post.id > max ? post.id : max, this.posts[0].id);
+        this.posts = [new Post(newPostId + 1, this.selectedPost.title, this.selectedPost.body), ...this.posts];
       }
-      this.selectedPost = '';
+      this.setSelectedPostValues('', '');
     }
   }
+
   removePost(postToRemove: Post) {
     this.posts = this.posts.filter(post => post.id !== postToRemove.id);
     this.posts.map(post => post.id = post.id > postToRemove.id  ? post.id - 1 : post.id);
@@ -49,11 +51,16 @@ export class AppComponent implements OnInit {
   editPost(post: Post) {
     this.isEditing = true;
     this.postToEdit = post;
-    this.selectedPost = post.title;
+    this.setSelectedPostValues(post.title, post.body);
   }
 
   cancelEdition() {
     this.isEditing = false;
-    this.selectedPost = '';
+    this.setSelectedPostValues('', '');
+  }
+
+  setSelectedPostValues(title, body) {
+    this.selectedPost.title = title;
+    this.selectedPost.body = body;
   }
 }

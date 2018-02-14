@@ -1,17 +1,3 @@
-div.list{
-    border: 1pc solid white;
-    height: 30px;
-    width: 80%;
-}
-
-div.list-element{
-    vertical-align: middle;
-}
-
-div.list-element button{
-    float: right;
-}
-
 div.new-post{
     width: 70%;
     border: 1pc solid white;
@@ -19,7 +5,7 @@ div.new-post{
 }
 
 div input{
-    width: 85%;
+    width: 42%;
     height: 44px;
     font-size: 20px;
 }
@@ -28,9 +14,20 @@ div {
     font-size: 20px;
 }
 
-div.list:hover {
+tr.posts:hover {
     background-color:lightgrey;
 }
+
+td.buttons {
+    text-align: right;
+    width: 180px;
+}
+
+tr.posts{
+    height: 50px;
+}
+
+
 
 
 
